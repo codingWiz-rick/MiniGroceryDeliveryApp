@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#1A1A1A</color>
+    <color name="white">#FFFFFF</color>
+    
+    <!-- Blinkit Precise Brand Colors -->
+    <color name="primary">#FCE42C</color> <!-- Blinkit Yellow -->
+    <color name="primary_light">#FFF9C4</color>
+    <color name="primary_dark">#FBC02D</color>
+    
+    <color name="on_primary">#000000</color> <!-- Black text on yellow -->
+    
+    <color name="secondary">#2E7D32</color> <!-- Green for Freshness/Price -->
+    <color name="on_secondary">#FFFFFF</color>
+    
+    <color name="surface_gray">#F5F5F7</color> <!-- Slightly cooler gray background -->
+    <color name="text_main">#1A1A1A</color>
+    <color name="text_muted">#757575</color>
+    <color name="divider">#E0E0E0</color>
+    
+    <color name="error">#D32F2F</color>
+</resources>

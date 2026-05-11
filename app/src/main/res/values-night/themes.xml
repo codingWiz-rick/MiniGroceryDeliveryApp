@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for Dark Mode. -->
+    <style name="Base.Theme.MiniGroceryDeliveryApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Main Colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_dark</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+
+        <!-- Surface and Background for Dark Mode -->
+        <item name="android:windowBackground">#0F0F0F</item>
+        <item name="colorSurface">#1A1A1A</item>
+        <item name="colorOnSurface">#F5F5F7</item>
+        <item name="colorSurfaceVariant">#2C2C2E</item>
+        <item name="colorOnSurfaceVariant">#A1A1A6</item>
+
+        <item name="colorOutline">#3A3A3C</item>
+        <item name="colorError">#FF453A</item>
+    </style>
+
+    <!-- Shape Appearance Overlays -->
+    <style name="ShapeAppearanceOverlay.Material3.Corner.Medium" parent="">
+        <item name="cornerSize">16dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Material3.Corner.Large" parent="">
+        <item name="cornerSize">28dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+</resources>
