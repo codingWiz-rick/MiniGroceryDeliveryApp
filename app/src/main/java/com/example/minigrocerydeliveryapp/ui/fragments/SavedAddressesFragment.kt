@@ -82,7 +82,10 @@ class SavedAddressesFragment : Fragment() {
         
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
+            .setCancelable(false)
             .create()
+
+        dialog.setCanceledOnTouchOutside(false)
 
         dialogBinding.btnSave.setOnClickListener {
             val name = dialogBinding.tilName.editText?.text.toString()

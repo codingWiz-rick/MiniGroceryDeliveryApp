@@ -86,14 +86,26 @@ class PreferenceManager(context: Context) {
     }
 
     fun isDarkMode(): Boolean {
-        return sharedPreferences.getBoolean("is_dark_mode", false)
+        return sharedPreferences.getBoolean("is_dark_mode", true)
     }
 
     fun setDarkMode(isDark: Boolean) {
-        sharedPreferences.edit().putBoolean("is_dark_mode", isDark).apply()
+        sharedPreferences.edit().putBoolean("is_dark_mode", isDark).commit()
+    }
+
+    fun areNotificationsEnabled(): Boolean {
+        return sharedPreferences.getBoolean("notifications_enabled", true)
+    }
+
+    fun setNotificationsEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean("notifications_enabled", enabled).apply()
     }
 
     fun clearSession() {
-        sharedPreferences.edit().clear().apply()
+        val isDark = isDarkMode()
+        val notifications = areNotificationsEnabled()
+        sharedPreferences.edit().clear().commit()
+        setDarkMode(isDark)
+        setNotificationsEnabled(notifications)
     }
 }

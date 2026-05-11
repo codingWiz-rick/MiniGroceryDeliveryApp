@@ -161,7 +161,14 @@ class HomeFragment : Fragment() {
 
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
+            .setCancelable(false)
             .create()
+
+        // Add a way to close the dialog if needed (optional, but good practice since cancelable=false)
+        // However, the screenshot shows a very clean UI, so maybe just make it cancelable via back button but not touch outside?
+        // Actually, setCancelable(false) prevents both.
+        // Let's use dialog.setCanceledOnTouchOutside(false) instead if we want to allow back button.
+        dialog.setCanceledOnTouchOutside(false)
 
         dialogBinding.btnSave.setOnClickListener {
             val newAddress = UserAddress(
@@ -174,7 +181,6 @@ class HomeFragment : Fragment() {
                 pincode = dialogBinding.tilPincode.editText?.text.toString()
             )
             viewModel.updateAddress(newAddress)
-            preferenceManager.saveAddress(newAddress)
             dialog.dismiss()
         }
 

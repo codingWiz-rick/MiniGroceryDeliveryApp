@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.size.Scale
 import com.example.minigrocerydeliveryapp.R
 import com.example.minigrocerydeliveryapp.data.ProductRepository
 import com.example.minigrocerydeliveryapp.databinding.FragmentProductDetailBinding
 import com.example.minigrocerydeliveryapp.viewmodel.GroceryViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class ProductDetailFragment : Fragment() {
 
@@ -44,11 +49,26 @@ class ProductDetailFragment : Fragment() {
                 placeholder(R.drawable.ic_launcher_background)
                 error(R.drawable.ic_launcher_background)
                 scale(Scale.FIT)
-                size(800) // Slightly larger limit for detail view, but prevents massive mem usage
+                size(800)
             }
 
-            binding.btnAddToCartDetail.setOnClickListener {
-                viewModel.addToCart(p)
+            // Observe cart state to update button text/state
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.cartItems.collectLatest { items ->
+                    val isInCart = items.any { it.product.id == p.id }
+                    if (isInCart) {
+                        binding.btnAddToCartDetail.text = "GO TO CART"
+                        binding.btnAddToCartDetail.setOnClickListener {
+                            findNavController().navigate(R.id.action_productDetailFragment_to_cartFragment)
+                        }
+                    } else {
+                        binding.btnAddToCartDetail.text = "ADD TO CART"
+                        binding.btnAddToCartDetail.setOnClickListener {
+                            viewModel.addToCart(p)
+                            Toast.makeText(requireContext(), "${p.name} added to cart", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
         }
 

@@ -54,7 +54,7 @@ class GroceryViewModel(application: Application) : AndroidViewModel(application)
     val userProfile: StateFlow<UserProfile> = _userProfile.asStateFlow()
 
     // User Address state
-    private val _userAddress = MutableStateFlow(UserAddress())
+    private val _userAddress = MutableStateFlow(preferenceManager.getAddress())
     val userAddress: StateFlow<UserAddress> = _userAddress.asStateFlow()
 
     // Address list state
@@ -74,10 +74,13 @@ class GroceryViewModel(application: Application) : AndroidViewModel(application)
     }
 
     /**
-     * Updates the user's delivery address
+     * Updates the user's delivery address and saves it as current
      */
     fun updateAddress(newAddress: UserAddress) {
         _userAddress.value = newAddress
+        preferenceManager.saveAddress(newAddress)
+        
+        // Also add to address list if it's a complete new address
         if (!_addressList.value.contains(newAddress) && newAddress.isComplete()) {
             addAddress(newAddress)
         }
@@ -87,6 +90,8 @@ class GroceryViewModel(application: Application) : AndroidViewModel(application)
      * Adds an address to the saved addresses list
      */
     fun addAddress(address: UserAddress) {
+        if (_addressList.value.contains(address)) return
+        
         val updatedList = _addressList.value + address
         _addressList.value = updatedList
         preferenceManager.saveAddressList(updatedList)
@@ -99,6 +104,13 @@ class GroceryViewModel(application: Application) : AndroidViewModel(application)
         val updatedList = _addressList.value.filter { it != address }
         _addressList.value = updatedList
         preferenceManager.saveAddressList(updatedList)
+        
+        // If the removed address was the current one, clear the current address
+        if (_userAddress.value == address) {
+            val emptyAddress = UserAddress()
+            _userAddress.value = emptyAddress
+            preferenceManager.saveAddress(emptyAddress)
+        }
     }
 
     /**

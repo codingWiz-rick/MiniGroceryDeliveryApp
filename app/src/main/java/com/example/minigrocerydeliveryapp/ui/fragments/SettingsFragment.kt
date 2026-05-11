@@ -32,7 +32,9 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupUI() {
+        // Sync switches with saved state
         binding.switchDarkMode.isChecked = preferenceManager.isDarkMode()
+        binding.switchNotifications.isChecked = preferenceManager.areNotificationsEnabled()
     }
 
     private fun setupListeners() {
@@ -40,13 +42,20 @@ class SettingsFragment : Fragment() {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+        // Dark Mode Switch Listener
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             preferenceManager.setDarkMode(isChecked)
+            
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+
+        // Notifications Switch Listener
+        binding.switchNotifications.setOnCheckedChangeListener { _, isChecked ->
+            preferenceManager.setNotificationsEnabled(isChecked)
         }
     }
 

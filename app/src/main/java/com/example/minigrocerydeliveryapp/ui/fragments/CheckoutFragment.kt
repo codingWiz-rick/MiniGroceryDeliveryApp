@@ -170,7 +170,10 @@ class CheckoutFragment : Fragment() {
 
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
+            .setCancelable(false)
             .create()
+        
+        dialog.setCanceledOnTouchOutside(false)
 
         dialogBinding.btnSave.setOnClickListener {
             val newAddress = UserAddress(
@@ -183,7 +186,6 @@ class CheckoutFragment : Fragment() {
                 pincode = dialogBinding.tilPincode.editText?.text.toString()
             )
             viewModel.updateAddress(newAddress)
-            preferenceManager.saveAddress(newAddress)
             dialog.dismiss()
         }
 
