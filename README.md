@@ -1,24 +1,25 @@
 # Mini Grocery Delivery App 🍎🥦
 
-A modern, clean, and functional Android application built with **Jetpack Compose** and **MVVM Architecture** as part of the OceanX Agency Internship Assignment.
+A modern, clean, and functional Android application built with **XML Views**, **View Binding**, and **MVVM Architecture** as part of the OceanX Agency Internship Assignment.
 
 ## 🚀 Features
 
 - **Authentication:** Simple Login Screen to start the app flow.
-- **Product Discovery:** Home screen featuring a grid of fresh grocery products with categories.
-- **Detailed View:** Product Detail Screen with large imagery, full description, and quantity selection.
-- **Cart Management:** Dynamic Cart Screen where users can increase/decrease quantities or remove items in real-time.
-- **Order Flow:** Seamless Checkout process with address validation and an Order Success confirmation.
+- **Product Discovery:** Home screen featuring a categorized list of fresh grocery products.
+- **Detailed View:** Product Detail Screen with rich descriptions and quantity management.
+- **Cart Management:** Dynamic Cart Screen using **Room Database** for persistence, allowing real-time quantity updates.
+- **Order Flow:** Seamless Checkout process with address management and order success confirmation.
+- **Profile & Settings:** User profile editing and dark mode support via `PreferenceManager`.
 - **Responsive UI:** Built with Material 3 components and optimized for various screen sizes.
-- **State Management:** Uses Kotlin Coroutines and StateFlow for reactive UI updates.
 
 ## 🛠️ Tech Stack
 
-- **Language:** Kotlin
-- **UI Framework:** Jetpack Compose (Material 3)
+- **Language:** [Kotlin](https://kotlinlang.org/)
+- **UI Framework:** XML Views & Material 3
 - **Architecture:** MVVM (Model-View-ViewModel)
-- **Navigation:** Jetpack Compose Navigation
-- **Asynchronous Logic:** Kotlin Coroutines & StateFlow
+- **Database:** [Room](https://developer.android.com/training/data-storage/room) (SQLite)
+- **Navigation:** [Jetpack Navigation Component](https://developer.android.com/guide/navigation)
+- **Asynchronous Logic:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [StateFlow](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)
 - **Dependency Management:** Gradle Version Catalog (libs.versions.toml)
 
 ## 📁 Project Structure
@@ -27,26 +28,20 @@ A modern, clean, and functional Android application built with **Jetpack Compose
 com.example.minigrocerydeliveryapp
 │
 ├── data/
-│   └── ProductRepository.kt       # Local dummy data source
-├── model/
-│   └── Product.kt                 # Data classes (Product, CartItem)
+│   ├── local/                     # Room Database, DAOs, and Entities
+│   ├── PreferenceManager.kt       # SharedPrefs for User & Theme settings
+│   └── ProductRepository.kt       # In-memory product data
+├── model/                         # Domain models (Product, Order, UserProfile)
 ├── ui/
-│   ├── components/                # Reusable UI molecules (ProductCard, CartItemRow)
-│   ├── navigation/
-│   │   └── Screen.kt              # Type-safe Navigation routes
-│   ├── screens/                   # Full-screen Compose UI
-│   │   ├── LoginScreen.kt
-│   │   ├── HomeScreen.kt
-│   │   ├── ProductDetailScreen.kt
-│   │   ├── CartScreen.kt
-│   │   └── CheckoutScreen.kt
-│   └── theme/                     # App styling (Colors, Type, Theme)
+│   ├── adapters/                  # RecyclerView Adapters for Lists (Products, Cart, Orders)
+│   ├── fragments/                 # UI Controllers (Home, Cart, Checkout, Profile, etc.)
+│   └── navigation/                # Navigation-related helpers (if any)
 ├── viewmodel/
-│   └── GroceryViewModel.kt        # Business logic & State management
+│   └── GroceryViewModel.kt        # Centralized business logic & state management
 └── MainActivity.kt                # App Entry Point & Navigation Host
 ```
 
-## 📸 Screenshots / Demo
+## 📸 Demo
 *(Include your screen recording link or GIF here)*
 
 ## 🛠️ How to Run
@@ -57,5 +52,5 @@ com.example.minigrocerydeliveryapp
 ---
 
 ## 👨‍💻 Submission for OceanX Agency
-- **GitHub Repository:** [Link to Repo]
-- **Developer:** [Your Name]
+- **GitHub Repository:** [https://github.com/codingWiz-rick/MiniGroceryDeliveryApp](https://github.com/codingWiz-rick/MiniGroceryDeliveryApp)
+- **Developer:** Shubham Chakraborty
