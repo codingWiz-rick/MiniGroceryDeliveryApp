@@ -42,7 +42,7 @@ com.example.minigrocerydeliveryapp
 ```
 
 ## 📸 Demo
-*(Include your screen recording link or GIF here)*
+* https://drive.google.com/file/d/1gcdBMdLYosUnGyY8i43lmlpMFldH7c1p/view?usp=sharing*
 
 ## 🛠️ How to Run
 1. Clone the repository.
