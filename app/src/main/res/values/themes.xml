@@ -1,5 +1,4 @@
-Ask me Android internship interview questions based on this project and help me answer them simply.<resources xmlns:tools="http://schemas.android.com/tools">
-Ask me Android internship interview questions based on this project and help me answer them simply.<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.MiniGroceryDeliveryApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Main Colors -->
@@ -23,7 +22,6 @@ Ask me Android internship interview questions based on this project and help me 
     </style>
 
     <style name="Theme.MiniGroceryDeliveryApp" parent="Base.Theme.MiniGroceryDeliveryApp" />
-...
 
     <!-- Shape Appearance Overlays -->
     <style name="ShapeAppearanceOverlay.Material3.Corner.Medium" parent="">
